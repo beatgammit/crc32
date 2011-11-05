@@ -2,7 +2,7 @@
 	"author": "T. Jameson Little <t.jameson.little@gmail.com>",
 	"name": "crc32",
 	"description": "CRC-32 implemented in JavaScript",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"repository": {
 		"type": "git",
 		"url": "http://github.com/beatgammit/crc32.git"
