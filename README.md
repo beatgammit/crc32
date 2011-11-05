@@ -3,7 +3,7 @@ Intro
 
 CRC means 'Cyclic Redundancy Check' and is a way to checksum data. It is a simple algorithm based on polynomials and is used in such projects as gzip.
 
-This module only works with UTF-8 strings.
+This module only works with UTF-8 strings, and is meant to be able to work on node and in the browser.
 
 Install
 =======
