@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 (function () {
 	'use strict';
 
@@ -17,11 +18,17 @@
 		return;
 	}
 
+	// get just the files
 	files = process.argv.slice(2);
 
 	files.forEach(function (file) {
-		var data = fs.readFileSync(file, 'utf8');
+		var data;
 
-		console.log(file, crc32(data));
+		try {
+			data = fs.readFileSync(file, 'utf8');
+			console.log(file + ':', crc32(data));
+		} catch (e) {
+			console.error('Error reading file:', file);
+		}
 	});
 }());
