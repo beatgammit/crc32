@@ -43,7 +43,9 @@
 	fs.readdirSync(testDir).forEach(function (file) {
 		var data = fs.readFileSync(path.join(testDir, file), 'utf8'),
 			tableRes = crc32(data),
-			directRes = crc32(data, true);
+			directRes = crc32(data, true),
+			appendRes,
+			arr;
 
 		if (tableRes !== directRes) {
 			console.log(file + ':',  'FAILED', '-', 'Results for table mode and direct mode');
@@ -59,6 +61,27 @@
 			}
 		} else {
 			console.warn('No check value for ' + file);
+		}
+
+		// run append test
+
+		// clear any previous data
+		crc32.table();
+
+		// convert string to byte array
+		arr = Array.prototype.map.call(data, function (char) {
+			return char.charCodeAt(0);
+		});
+
+		// run in append mode in 10 byte chunks
+		while (arr.length) {
+			appendRes = (crc32.table(arr.splice(0, 10), true) >>> 0).toString(16);
+		}
+
+		if (appendRes !== tableRes) {
+			console.log(file + ':', 'FAILED', '-', 'Append mode output not correct');
+			console.log(appendRes, tableRes);
+			return;
 		}
 
 		console.log(file + ':', 'PASSED');

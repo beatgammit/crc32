@@ -5,6 +5,8 @@ CRC means 'Cyclic Redundancy Check' and is a way to checksum data. It is a simpl
 
 This module only works with UTF-8 strings, and is meant to be able to work on node and in the browser.
 
+This module also supports append mode (where a running crc sum is stored). Running in regular mode will reset the current crc sum.
+
 Install
 =======
 
@@ -27,6 +29,9 @@ API
 
 	// directly run on someString using a table
 	crc32.table(someString);
+
+	// directly run on someString using a table in append mode
+	crc32.table(someString, true);
 
 	// directly run on someString using direct mode
 	crc32.direct(someString);
