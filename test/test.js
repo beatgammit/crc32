@@ -41,7 +41,7 @@
 	}
 	
 	fs.readdirSync(testDir).forEach(function (file) {
-		var data = fs.readFileSync(path.join(testDir, file), 'utf8'),
+		var data = fs.readFileSync(path.join(testDir, file)),
 			tableRes = crc32(data),
 			directRes = crc32(data, true),
 			appendRes,
@@ -55,7 +55,7 @@
 
 		if (file in checkValues) {
 			if (tableRes !== checkValues[file]) {
-			failed = true;
+				failed = true;
 				console.log(file + ':', 'FAILED', '-', 'Results do not match {val = ' + tableRes + ', actual = ' + checkValues[file] + '}');
 				return;
 			}
@@ -68,9 +68,9 @@
 		// clear any previous data
 		crc32.table();
 
-		// convert string to byte array
-		arr = Array.prototype.map.call(data, function (char) {
-			return char.charCodeAt(0);
+		// convert Buffer to byte array
+		arr = Array.prototype.map.call(data, function (byte) {
+			return byte;
 		});
 
 		// run in append mode in 10 byte chunks

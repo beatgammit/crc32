@@ -25,8 +25,8 @@
 		var data;
 
 		try {
-			data = fs.readFileSync(file, 'utf8');
-			console.log(file + ':', crc32(data));
+			data = fs.readFileSync(file);
+			console.log(crc32(data));
 		} catch (e) {
 			console.error('Error reading file:', file);
 		}
