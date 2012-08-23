@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/beatgammit/crc32.png)](http://travis-ci.org/beatgammit/crc32)
 Intro
 =====
 
